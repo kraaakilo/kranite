@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kranite/components/CosmeticElement.dart';
 import 'package:kranite/components/ScrollableCategory.dart';
+import 'package:kranite/data/api.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -17,6 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,12 +91,39 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.white,
                     ),
                   ),
-                )
+                ),
                 // Icon(Icons.filter)
               ],
             ),
           ),
-          const ScrollableCategoryListView()
+          const ScrollableCategoryListView(),
+          const SizedBox(height: 20),
+          Expanded(
+              child: FutureBuilder(
+            builder: (BuildContext context, snapshot) {
+              if (snapshot.hasData) {
+                return GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
+                  children: List.generate(
+                    snapshot.data!.length,
+                    (index) => CosmeticElement(
+                      cosmetic: snapshot.data!.elementAt(index),
+                    ),
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: Text(
+                    "None",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                );
+              }
+            },
+            future: api(),
+          ))
         ],
       ),
     );
