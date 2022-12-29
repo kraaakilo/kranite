@@ -16,9 +16,21 @@ class _CosmeticElementState extends State<CosmeticElement> {
     return SizedBox(
       child: Column(
         children: [
-          Image.network(
-            widget.cosmetic.imageUrl,
-            width: 160,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.network(
+              widget.cosmetic.imageUrl,
+              width: 160,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 2.0),
+            child: Text(
+              widget.cosmetic.name,
+              style: const TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
           Expanded(
             child: Padding(
@@ -26,10 +38,13 @@ class _CosmeticElementState extends State<CosmeticElement> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("images/vbucks.webp",width: 20,),
-                  const Text(
-                    "1500",
-                    style: TextStyle(
+                  Image.asset(
+                    "images/vbucks.webp",
+                    width: 20,
+                  ),
+                  Text(
+                    widget.cosmetic.price.toString(),
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),

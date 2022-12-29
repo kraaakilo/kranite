@@ -1,6 +1,6 @@
 class Cosmetic {
   late String name;
-  late double price;
+  late int price;
   late String rarity;
   late String type;
   late String imageUrl;

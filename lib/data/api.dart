@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -11,9 +12,7 @@ Future<List<Cosmetic>> api() async {
       headers: {"Authorization": "e2a0e0a6-7245ad49-ad3c1d0a-2eb46ee8"});
 
   dynamic data = jsonDecode(response.body.toString());
-    debugPrint(data);
-
-
+  debugPrint(data.toString());
 
   for (int k = 0; k < data["shop"].length; k++) {
     dynamic shopItem = data["shop"][k];
@@ -22,7 +21,7 @@ Future<List<Cosmetic>> api() async {
       shopItem["price"]["regularPrice"],
       shopItem["rarity"]["name"],
       shopItem["displayType"],
-      shopItem["displayAssets"][0]["full_background"],
+      shopItem["displayAssets"][0]["background"],
     );
     array.add(cosmetic);
   }
