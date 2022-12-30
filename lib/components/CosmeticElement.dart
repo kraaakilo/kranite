@@ -13,12 +13,6 @@ class CosmeticElement extends StatefulWidget {
 
 class _CosmeticElementState extends State<CosmeticElement> {
   @override
-  void initState() {
-    super.initState();
-    print(widget.cosmetic.imageUrl);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15),
