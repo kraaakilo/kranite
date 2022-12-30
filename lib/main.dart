@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:kranite/components/CosmeticElement.dart';
 import 'package:kranite/components/ScrollableCategory.dart';
-import 'package:kranite/data/api.dart';
+import 'package:kranite/data/APIService.dart';
 
 // Cached Images Branch
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
+    theme: ThemeData(
+      fontFamily: "Fortnite"
+    ),
     home: HomePage(),
     debugShowCheckedModeBanner: false,
   ));
@@ -48,7 +51,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(right: 15),
             child: Row(
               children: const [
-                Icon(Icons.shopping_bag),
+                Icon(Icons.favorite),
               ],
             ),
           )
@@ -106,6 +109,7 @@ class _HomePageState extends State<HomePage> {
               if (snapshot.hasData) {
                 return GridView.count(
                   crossAxisCount: 2,
+                  childAspectRatio: 0.7,
                   crossAxisSpacing: 5,
                   mainAxisSpacing: 5,
                   children: List.generate(
@@ -124,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             },
-            future: api(),
+            future: APIService.api(),
           ))
         ],
       ),
