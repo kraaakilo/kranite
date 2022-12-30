@@ -3,8 +3,6 @@ import 'package:kranite/components/CosmeticElement.dart';
 import 'package:kranite/components/ScrollableCategory.dart';
 import 'package:kranite/data/api.dart';
 
-// Cached Images Branch
-
 void main() {
   runApp(const MaterialApp(
     home: HomePage(),
