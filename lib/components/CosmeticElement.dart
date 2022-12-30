@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kranite/models/Cosmetic.dart';
 
@@ -12,35 +13,61 @@ class CosmeticElement extends StatefulWidget {
 
 class _CosmeticElementState extends State<CosmeticElement> {
   @override
+  void initState() {
+    super.initState();
+    print(widget.cosmetic.imageUrl);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 15),
       child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.network(
-              widget.cosmetic.imageUrl,
-              width: 160,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 2.0),
-            child: Text(
-              widget.cosmetic.name,
-              style: const TextStyle(
-                color: Colors.white,
+          Container(
+            constraints: BoxConstraints(minHeight: 180),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: CachedNetworkImage(
+                width: 180,
+                fit: BoxFit.cover,
+                imageUrl: widget.cosmetic.imageUrl,
+                placeholder: (context, url) => Center(
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: const CircularProgressIndicator(
+                      strokeWidth: 2,
+                    ),
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(0.0),
-              child: Row(
+          Column(
+            children: [
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  widget.cosmetic.name,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.normal
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
                     "images/vbucks.webp",
                     width: 20,
+                    height: 20,
                   ),
                   Text(
                     widget.cosmetic.price.toString(),
@@ -50,7 +77,7 @@ class _CosmeticElementState extends State<CosmeticElement> {
                   ),
                 ],
               ),
-            ),
+            ],
           )
         ],
       ),
