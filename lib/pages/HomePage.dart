@@ -6,6 +6,7 @@ import 'package:kranite/data/APIService.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+  final double commSize = 45;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -19,25 +20,25 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
             child: Row(
               children: [
                 Expanded(
                   child: SizedBox(
-                    height: 55,
+                    height: widget.commSize,
                     child: TextField(
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
                       decoration: InputDecoration(
                         filled: true,
-                        prefixIcon: const Icon(Icons.search),
-                        fillColor: Colors.white,
+                        prefixIcon: Icon(
+                          Icons.search,
+                        ),
+                        fillColor: Colors.black38,
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
                     ),
                   ),
@@ -45,8 +46,8 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Container(
-                    height: 55,
-                    width: 55,
+                    height: widget.commSize,
+                    width: widget.commSize,
                     decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(15)),
