@@ -63,9 +63,17 @@ class _HomePageState extends State<HomePage> {
                         fillColor: Colors.black38,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 3,
+                            color : Theme.of(context).primaryColor,
+                          ),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 3,
+                            color : Theme.of(context).primaryColor,
+                          ),
                         ),
                       ),
                     ),

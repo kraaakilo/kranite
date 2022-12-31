@@ -20,7 +20,7 @@ class APIService {
         shopItem["displayName"],
         shopItem["price"]["regularPrice"],
         shopItem["rarity"]["name"],
-        shopItem["displayType"],
+        shopItem["mainType"],
         shopItem["displayAssets"][0]["background"],
       );
       array.add(cosmetic);

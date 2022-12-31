@@ -23,9 +23,10 @@ class _ScrollableCategoryListViewState
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(
-              categories.length,
+              cosmeticTypes.length,
               (index) => GestureDetector(
                 onTap: () {
+                  String key = cosmeticTypes.entries.toList()[index].key;
                   setState(() {
                     indexSelected = index;
                   });
@@ -42,7 +43,7 @@ class _ScrollableCategoryListViewState
                     padding: const EdgeInsets.symmetric(horizontal: 18),
                     child: Center(
                       child: Text(
-                        categories[index],
+                        cosmeticTypes.values.toList()[index],
                         style: const TextStyle(
                           color: Color(0xffffffff),
                           fontWeight: FontWeight.bold,
