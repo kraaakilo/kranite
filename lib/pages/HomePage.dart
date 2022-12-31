@@ -15,11 +15,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarComponent(),
+      appBar: AppBarComponent(context),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 12),
             child: Row(
               children: [
                 Expanded(
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                     height: 55,
                     width: 55,
                     decoration: BoxDecoration(
-                        color: Colors.purple,
+                        color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(15)),
                     child: const Icon(
                       Icons.hub,
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
               } else {
                 return const Center(
                   child: Text(
-                    "None",
+                    "Chargement des ressources... Veuillez patienter.",
                     style: TextStyle(color: Colors.white),
                   ),
                 );

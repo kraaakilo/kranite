@@ -9,8 +9,10 @@ class ScrollableCategoryListView extends StatefulWidget {
       _ScrollableCategoryListViewState();
 }
 
-class _ScrollableCategoryListViewState extends State<ScrollableCategoryListView> {
+class _ScrollableCategoryListViewState
+    extends State<ScrollableCategoryListView> {
   int indexSelected = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,7 +25,7 @@ class _ScrollableCategoryListViewState extends State<ScrollableCategoryListView>
             children: List.generate(
               categories.length,
               (index) => GestureDetector(
-                onTap: (){
+                onTap: () {
                   setState(() {
                     indexSelected = index;
                   });
@@ -31,7 +33,9 @@ class _ScrollableCategoryListViewState extends State<ScrollableCategoryListView>
                 child: Container(
                   margin: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                    color: index == indexSelected ?  const Color(0xffCBCDFE) : const Color(0xff363636) ,
+                    color: index == indexSelected
+                        ? Theme.of(context).primaryColor
+                        : const Color(0xff363636),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Padding(

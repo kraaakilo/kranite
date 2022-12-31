@@ -6,6 +6,7 @@ void main() {
     theme: ThemeData(
       fontFamily: "Fortnite",
       colorScheme: ColorScheme.dark(),
+      primaryColor: Colors.black38,
     ),
     home: HomePage(),
     debugShowCheckedModeBanner: false,
