@@ -40,7 +40,7 @@ class _ScrollableCategoryListViewState extends State<ScrollableCategoryListView>
                       child: Text(
                         categories[index],
                         style: const TextStyle(
-                          color: Color(0xff6B6B6B),
+                          color: Color(0xffffffff),
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.center,
