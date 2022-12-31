@@ -3,6 +3,7 @@ import 'package:kranite/components/AppBarComponent.dart';
 import 'package:kranite/components/CosmeticElement.dart';
 import 'package:kranite/components/ScrollableCategory.dart';
 import 'package:kranite/data/APIService.dart';
+import 'package:kranite/models/Cosmetic.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,6 +14,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Cosmetic> _data = [];
+  List<Cosmetic> _untouched = [];
+
+  void getData() async {
+    List<Cosmetic> d = await APIService.api();
+    setState(() {
+      _data = _untouched = d;
+    });
+  }
+
+  void search(String value) {
+    setState(() {
+      _data = _untouched
+          .where((element) =>
+              element.name.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+    print(_data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +54,7 @@ class _HomePageState extends State<HomePage> {
                   child: SizedBox(
                     height: widget.commSize,
                     child: TextField(
+                      onChanged: (value) => search(value),
                       decoration: InputDecoration(
                         filled: true,
                         prefixIcon: Icon(
@@ -51,8 +79,9 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(15)),
-                    child: const Icon(
-                      Icons.hub,
+                    child: IconButton(
+                      icon: Icon(Icons.hub),
+                      onPressed: null,
                       color: Colors.white,
                     ),
                   ),
@@ -64,32 +93,22 @@ class _HomePageState extends State<HomePage> {
           const ScrollableCategoryListView(),
           const SizedBox(height: 20),
           Expanded(
-              child: FutureBuilder(
-            builder: (BuildContext context, snapshot) {
-              if (snapshot.hasData) {
-                return GridView.count(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                  crossAxisSpacing: 5,
-                  mainAxisSpacing: 5,
-                  children: List.generate(
-                    snapshot.data!.length,
-                    (index) => CosmeticElement(
-                      cosmetic: snapshot.data!.elementAt(index),
+            child: _data.length > 0
+                ? GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.7,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
+                    children: List.generate(_data.length,
+                        (index) => CosmeticElement(cosmetic: _data[index])),
+                  )
+                : Center(
+                    child: Text(
+                      "Aucune donnée disponible.",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                );
-              } else {
-                return const Center(
-                  child: Text(
-                    "Chargement des ressources... Veuillez patienter.",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                );
-              }
-            },
-            future: APIService.api(),
-          ))
+          ),
         ],
       ),
     );
