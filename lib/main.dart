@@ -13,7 +13,7 @@ void main() {
         primaryColor: Colors.black38,
       ),
       home: HomePage(),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
     ),
   ));
 }
