@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kranite/data/APIService.dart';
 import '../models/Cosmetic.dart';
 
 class CosmeticProvider extends ChangeNotifier {
@@ -7,8 +8,8 @@ class CosmeticProvider extends ChangeNotifier {
 
   List<Cosmetic> get getCosmetics => _cosmetics;
 
-  void setCosmetics(List<Cosmetic> data) {
-    _cosmetics = _untouched = data;
+  Future<void> loadCosmetics() async{
+    _cosmetics = _untouched = await APIService.api();
     notifyListeners();
   }
 

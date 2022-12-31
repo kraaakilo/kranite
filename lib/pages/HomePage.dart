@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kranite/components/AppBarComponent.dart';
 import 'package:kranite/components/CosmeticElement.dart';
 import 'package:kranite/components/ScrollableCategory.dart';
-import 'package:kranite/data/APIService.dart';
-import 'package:kranite/models/Cosmetic.dart';
 import 'package:kranite/providers/CosmeticProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -16,20 +14,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Cosmetic> _data = [];
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void getData() async {
-    List<Cosmetic> d = await APIService.api();
-    setState(() {
-      _data = d;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    getData();
+    Provider.of<CosmeticProvider>(context, listen: false).loadCosmetics();
   }
 
   @override
@@ -37,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: Drawer(),
       key: scaffoldKey,
-      appBar: AppBarComponent(context,scaffoldKey),
+      appBar: AppBarComponent(context, scaffoldKey),
       body: Consumer<CosmeticProvider>(
         builder: (context, cosmetics, child) => Column(
           children: [
@@ -50,8 +40,7 @@ class _HomePageState extends State<HomePage> {
                     child: SizedBox(
                       height: widget.commSize,
                       child: TextField(
-                        onChanged: (value) =>
-                            cosmetics.searchCosmetics(value),
+                        onChanged: (value) => cosmetics.searchCosmetics(value),
                         decoration: InputDecoration(
                           filled: true,
                           prefixIcon: Icon(
@@ -86,10 +75,7 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(15)),
                       child: IconButton(
                         icon: Icon(Icons.hub),
-                        onPressed: () {
-                          Provider.of<CosmeticProvider>(context, listen: false)
-                              .setCosmetics(_data);
-                        },
+                        onPressed: () {},
                         color: Colors.white,
                       ),
                     ),
