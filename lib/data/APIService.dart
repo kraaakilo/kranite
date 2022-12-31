@@ -18,6 +18,7 @@ class APIService {
         price: shopItem["price"]["regularPrice"],
         rarity: shopItem["rarity"]["name"],
         type: shopItem["mainType"],
+        description: shopItem["displayDescription"],
         imageUrl: shopItem["displayAssets"][0]["background"],
       );
       array.add(cosmetic);

@@ -11,9 +11,15 @@ void main() {
         fontFamily: "Fortnite",
         colorScheme: ColorScheme.dark(),
         primaryColor: Colors.black38,
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(
+            fontSize: 30,
+            // overflow: TextOverflow.visible
+          )
+        )
       ),
       home: HomePage(),
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
     ),
   ));
 }

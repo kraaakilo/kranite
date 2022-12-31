@@ -3,6 +3,7 @@ class Cosmetic {
   late int price;
   late String rarity;
   late String type;
+  late String description;
   late String imageUrl;
 
   Cosmetic({
@@ -10,6 +11,7 @@ class Cosmetic {
     required this.price,
     required this.rarity,
     required this.type,
+    required this.description,
     required this.imageUrl,
   });
 
@@ -19,6 +21,7 @@ class Cosmetic {
       "price": price,
       "rarity": rarity,
       "type": type,
+      "description": description,
       "imageUrl": imageUrl,
     };
   }
@@ -28,5 +31,6 @@ class Cosmetic {
         price = json["price"],
         rarity = json["rarity"],
         type = json["type"],
+        description = json["description"],
         imageUrl = json["imageUrl"];
 }
