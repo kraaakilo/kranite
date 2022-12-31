@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:kranite/pages/HomePage.dart';
+import 'package:kranite/providers/CosmeticProvider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MaterialApp(
-    theme: ThemeData(
-      fontFamily: "Fortnite",
-      colorScheme: ColorScheme.dark(),
-      primaryColor: Colors.black38,
+  runApp(ChangeNotifierProvider(
+    create: (context) => CosmeticProvider(),
+    child: MaterialApp(
+      theme: ThemeData(
+        fontFamily: "Fortnite",
+        colorScheme: ColorScheme.dark(),
+        primaryColor: Colors.black38,
+      ),
+      home: HomePage(),
+      debugShowCheckedModeBanner: false,
     ),
-    home: HomePage(),
-    debugShowCheckedModeBanner: false,
   ));
 }

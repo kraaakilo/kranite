@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kranite/data/consts.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/CosmeticProvider.dart';
 
 class ScrollableCategoryListView extends StatefulWidget {
   const ScrollableCategoryListView({Key? key}) : super(key: key);
@@ -27,6 +30,7 @@ class _ScrollableCategoryListViewState
               (index) => GestureDetector(
                 onTap: () {
                   String key = cosmeticTypes.entries.toList()[index].key;
+                  Provider.of<CosmeticProvider>(context,listen: false).filterCosmetics(key);
                   setState(() {
                     indexSelected = index;
                   });

@@ -5,13 +5,13 @@ class Cosmetic {
   late String type;
   late String imageUrl;
 
-  Cosmetic(
-    this.name,
-    this.price,
-    this.rarity,
-    this.type,
-    this.imageUrl,
-  );
+  Cosmetic({
+    required this.name,
+    required this.price,
+    required this.rarity,
+    required this.type,
+    required this.imageUrl,
+  });
 
   Map<String, dynamic> toJson() {
     return {

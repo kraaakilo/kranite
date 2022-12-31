@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-AppBar AppBarComponent(BuildContext context) {
+AppBar AppBarComponent(BuildContext context, scaffoldKey) {
   return AppBar(
     toolbarHeight: 85,
     elevation: 0,
@@ -14,7 +14,7 @@ AppBar AppBarComponent(BuildContext context) {
     ),
     leading: IconButton(
       icon: const Icon(Icons.menu),
-      onPressed: null,
+      onPressed: () => scaffoldKey.currentState!.openDrawer(),
     ),
     centerTitle: true,
     actions: [

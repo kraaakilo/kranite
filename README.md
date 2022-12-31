@@ -10,5 +10,5 @@ Tech used : Flutter.
 
 
 <p align="center">
-  <img src="https://i.ibb.co/1ngk2L8/Screenshot-1672480235.png" alt="App Overview"/>
+  <img src="https://i.ibb.co/1ngk2L8/Screenshot-1672480235.png" alt="App Overview" width="70%"/>
 </p>
