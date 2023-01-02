@@ -1,9 +1,14 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:kranite/models/Cosmetic.dart';
 
 class APIService {
   static Future<List<Cosmetic>> api() async {
+
+
+
+
     List<Cosmetic> array = [];
     var url = Uri.parse("https://fortniteapi.io/v2/shop?lang=fr");
     var response = await http.get(url,
@@ -22,6 +27,8 @@ class APIService {
         imageUrl: shopItem["displayAssets"][0]["background"],
       );
       array.add(cosmetic);
+
+      FirebaseFirestore.instance.collection("users").add(cosmetic.toJson());
     }
 
     return array;

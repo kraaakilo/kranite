@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "501737909733",
+    "project_id": "kranite-13v",
+    "storage_bucket": "kranite-13v.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501737909733:android:d12893431404831e30d30c",
+        "android_client_info": {
+          "package_name": "com.kraaakilo.kranite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501737909733-4805jvtckghqm887a9g0kmla1kn05b26.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAflSgYoe4rPGQWarbvFV8bPiqhY63wNsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "501737909733-4805jvtckghqm887a9g0kmla1kn05b26.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "501737909733-9eos901u6ia9rl1v6abdrc2emtj76b8m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kraaakilo.kranite"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
