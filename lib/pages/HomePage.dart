@@ -5,6 +5,8 @@ import 'package:kranite/components/ScrollableCategory.dart';
 import 'package:kranite/providers/CosmeticProvider.dart';
 import 'package:provider/provider.dart';
 
+import '../components/DrawerComponent.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
   final double commSize = 45;
@@ -25,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: DrawerComponent(context),
       key: scaffoldKey,
       appBar: AppBarComponent(context, scaffoldKey),
       body: Consumer<CosmeticProvider>(

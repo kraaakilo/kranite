@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kranite/pages/WishlistPage.dart';
 
 AppBar AppBarComponent(BuildContext context, scaffoldKey) {
   return AppBar(
@@ -17,15 +18,5 @@ AppBar AppBarComponent(BuildContext context, scaffoldKey) {
       onPressed: () => scaffoldKey.currentState!.openDrawer(),
     ),
     centerTitle: true,
-    actions: [
-      Padding(
-        padding: const EdgeInsets.only(right: 15),
-        child: Row(
-          children: const [
-            Icon(Icons.favorite),
-          ],
-        ),
-      )
-    ],
   );
 }
