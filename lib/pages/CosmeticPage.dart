@@ -24,10 +24,17 @@ class _CosmeticPageState extends State<CosmeticPage> {
             ),
             child: Hero(
               tag: widget.cosmetic.name,
-              child: CachedNetworkImage(
-                imageUrl: widget.cosmetic.imageUrl,
-                placeholder: ((context, url) =>
-                    const CircularProgressIndicator()),
+              child: GestureDetector(
+                onVerticalDragUpdate: (DragUpdateDetails details) {
+                  if (details.delta.dy > 12) {
+                    Navigator.pop(context);
+                  }
+                },
+                child: CachedNetworkImage(
+                  imageUrl: widget.cosmetic.imageUrl,
+                  placeholder: ((context, url) =>
+                      const CircularProgressIndicator()),
+                ),
               ),
             ),
           ),
