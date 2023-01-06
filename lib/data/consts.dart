@@ -6,3 +6,9 @@ const Map<String, String> cosmeticTypes = {
   "Glider": "Planeur",
   "Emote": "Emote",
 };
+
+
+enum MessageType {
+  Text,
+  Media
+}

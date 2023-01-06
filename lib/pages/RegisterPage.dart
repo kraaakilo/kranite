@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import '../components/TransparentAppBar.dart';
+import '../providers/UserProvider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -23,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
     _passwordConfirmController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +54,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _emailController,
                     validator: (email) {
                       if (email != null) {
-                        var regex = RegExp(r'^[A-Za-z0-9]{2,}@[a-z]+.[a-z]{2,9}$')
-                            .stringMatch(email);
+                        var regex =
+                            RegExp(r'^[A-Za-z0-9]{2,}@[a-z]+.[a-z]{2,9}$')
+                                .stringMatch(email);
                         if (regex == null) {
                           return "Invalid email address";
                         }
@@ -134,10 +138,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         try {
-                          UserCredential user = await FirebaseAuth.instance
-                              .createUserWithEmailAndPassword(
-                                  email: _emailController.text,
-                                  password: _passwordController.text);
+                          UserCredential user =
+                              await Provider.of<UserProvider>(context)
+                                  .instance
+                                  .createUserWithEmailAndPassword(
+                                      email: _emailController.text,
+                                      password: _passwordController.text);
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(
                                   "Your account was successfully created : ${user.user!.email}")));

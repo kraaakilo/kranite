@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kranite/pages/HomePage.dart';
 import 'package:kranite/pages/WishlistPage.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/LoginPage.dart';
 import '../pages/RegisterPage.dart';
+import '../providers/UserProvider.dart';
 
 Drawer DrawerComponent(BuildContext context) {
-  User? user = FirebaseAuth.instance.currentUser;
+  User? user = Provider.of<UserProvider>(context).getUser;
   return Drawer(
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 35.0),
@@ -65,7 +67,15 @@ Drawer DrawerComponent(BuildContext context) {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        onTap: () => FirebaseAuth.instance.signOut(),
+                        onTap: () {
+                          Provider.of<UserProvider>(context,listen: false).signOut();
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                              (route) => false);
+                        },
                         child: ListTile(
                           leading: Icon(Icons.door_back_door_rounded),
                           title: Text("Logout"),

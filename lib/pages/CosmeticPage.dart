@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kranite/models/Cosmetic.dart';
 import 'package:kranite/models/Wishlist.dart';
+import 'package:provider/provider.dart';
 import '../components/TransparentAppBar.dart';
+import '../providers/UserProvider.dart';
 
 class CosmeticPage extends StatefulWidget {
   final Cosmetic cosmetic;
@@ -16,8 +17,6 @@ class CosmeticPage extends StatefulWidget {
 }
 
 class _CosmeticPageState extends State<CosmeticPage> {
-  final User? _user = FirebaseAuth.instance.currentUser;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +84,7 @@ class _CosmeticPageState extends State<CosmeticPage> {
               ),
             ),
             const SizedBox(height: 40),
-            _user != null
+            Provider.of<UserProvider>(context).isLoggedIn()
                 ? Container(
                     width: 170,
                     child: Center(
@@ -94,10 +93,9 @@ class _CosmeticPageState extends State<CosmeticPage> {
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               QuerySnapshot docs = snapshot.data;
-                              if(docs.docs.length > 0){
+                              if (docs.docs.length > 0) {
                                 return Text("Already in wishlist");
                               }
-                              print(docs.docs);
                             }
                             return ElevatedButton(
                               onPressed: () async {

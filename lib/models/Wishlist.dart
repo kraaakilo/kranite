@@ -4,10 +4,11 @@ import 'package:kranite/models/Cosmetic.dart';
 
 class Wishlist {
   Cosmetic cosmetic;
-  late String user_id;
+  late String? user_id;
 
   Wishlist({required this.cosmetic}) {
-    user_id = FirebaseAuth.instance.currentUser!.uid;
+    User? instance = FirebaseAuth.instance.currentUser;
+    user_id = instance != null ? instance.uid : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -17,7 +18,21 @@ class Wishlist {
   }
 
   void add() async {
-    await FirebaseFirestore.instance.collection("wishlists").add(this.toJson());
+    QuerySnapshot query = await FirebaseFirestore.instance
+        .collection("wishlists")
+        .where("slug", isEqualTo: this.cosmetic.slug)
+        .where("user_id", isEqualTo: this.user_id)
+        .get();
+    if (query.docs.length > 0) {
+      FirebaseFirestore.instance
+          .collection("wishlists")
+          .doc(query.docs.first.id)
+          .delete();
+    } else {
+      await FirebaseFirestore.instance
+          .collection("wishlists")
+          .add(this.toJson());
+    }
   }
 
   Stream stream() {
