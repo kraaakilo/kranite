@@ -20,7 +20,7 @@ class _ScrollableCategoryListViewState
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 15),
+        const SizedBox(height: 25),
         SizedBox(
           height: 50,
           child: ListView(
