@@ -1,4 +1,4 @@
-kkvbb.  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:kranite/data/consts.dart';
 import 'package:provider/provider.dart';
 
